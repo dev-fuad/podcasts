@@ -10,7 +10,7 @@
 import { Text } from 'react-native';
 
 const Index = () => {
-  return <Text>Podcasts!</Text>;
+  return <Text className="text-4xl text-slate-700 dark:text-white">Podcasts!</Text>;
 };
 
 export default Index;
