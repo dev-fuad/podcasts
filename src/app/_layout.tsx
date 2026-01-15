@@ -1,10 +1,20 @@
+/**
+ * podcasts
+ * _layout.tsx
+ * created: 16/01/2026
+ * Fuad Mohd. Firoz
+ *
+ * @format
+ */
+
+import { Slot } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Slot />
       <StatusBar style="auto" />
     </View>
   );
