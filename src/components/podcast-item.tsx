@@ -8,24 +8,24 @@
  */
 
 import { View, Text, Image } from "react-native";
-import { PodcastItem as PodcastItemType } from "@/types/podcasts";
+import { Podcast } from "@/types/__generated__/graphql";
 
 export type PodcastItemProps = {
-  podcast: PodcastItemType;
+  podcast: Podcast;
 };
 
 const PodcastItem = ({ podcast }: PodcastItemProps) => {
   return (
     <View className="flex-row items-center gap-2 px-3 py-2">
       <Image
-        src={podcast.image}
+        src={podcast.thumbnail}
         className="bg-gray-200 dark:bg-gray-800 w-12 h-12 rounded-lg"
       />
       <View>
-        <Text className="font-semibold">{podcast.title ?? podcast.author}</Text>
-        <Text className="text-sm text-gray-500">{podcast.description}</Text>
+        <Text className="font-semibold">{podcast.podcastName}</Text>
+        <Text className="text-sm text-gray-500">{podcast.artist}</Text>
         <Text className="text-sm text-blue-500">
-          Episodes: {podcast.episodes}
+          Episodes: {podcast.episodesCount}
         </Text>
       </View>
     </View>
