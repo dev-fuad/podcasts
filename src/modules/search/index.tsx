@@ -18,11 +18,13 @@ import {
   SearchQueryQuery,
   SearchQueryQueryVariables,
 } from "@/types/__generated__/graphql";
+import EmptyList from "./components/empty-list";
+import ErrorMessage from "./components/error-message";
 
 const SearchScreen = () => {
   const color = useCSSVariable("--color-indigo-900") as string;
   const [searchTerm, setSearchTerm] = useState("");
-  const [search, { data, loading, error }] = useLazyQuery<
+  const [search, { data, loading, error, called }] = useLazyQuery<
     SearchQueryQuery,
     SearchQueryQueryVariables
   >(searchQuery);
@@ -48,19 +50,12 @@ const SearchScreen = () => {
         className="flex-1"
         contentContainerClassName="grow"
         renderItem={({ item }) => <PodcastItem podcast={item} />}
-        ListEmptyComponent={
-          loading
-            ? undefined
-            : () => (
-                <View className="flex-1 items-center justify-center">
-                  <Text className="text-gray-500">
-                    {searchTerm.trim().length > 0
-                      ? "No podcasts found"
-                      : "Search for a podcast"}
-                  </Text>
-                </View>
-              )
-        }
+        ListEmptyComponent={() => (
+          <EmptyList
+            searched={called && searchTerm.trim().length > 0}
+            loading={loading}
+          />
+        )}
         ListHeaderComponent={
           loading
             ? () => <ActivityIndicator color={color} className="mt-4" />
@@ -70,11 +65,7 @@ const SearchScreen = () => {
           <View className="h-px mx-2 bg-gray-200 dark:bg-gray-800" />
         )}
       />
-      {error?.message && (
-        <View className="p-2 bg-red-500">
-          <Text className="text-sm text-white">{error?.message}</Text>
-        </View>
-      )}
+      <ErrorMessage error={error?.message} />
     </View>
   );
 };
