@@ -7,7 +7,7 @@
  * @format
  */
 
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, View } from "react-native";
 import { useCSSVariable } from "uniwind";
 import PodcastItem from "@/components/podcast-item";
 import Input from "@/components/ui/input";
