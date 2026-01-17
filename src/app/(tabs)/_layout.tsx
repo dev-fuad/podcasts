@@ -1,13 +1,15 @@
 import { Tabs } from "expo-router";
-import { useCSSVariable } from "uniwind";
+import { useCSSVariable, useResolveClassNames } from "uniwind";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function Layout() {
   const color = useCSSVariable("--color-indigo-900") as string;
+  const headerTitleStyle = useResolveClassNames("text-blue-900");
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: color,
+        headerTitleStyle,
       }}
     >
       <Tabs.Screen

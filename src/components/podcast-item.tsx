@@ -21,10 +21,14 @@ const PodcastItem = ({ podcast }: PodcastItemProps) => {
         src={podcast.thumbnail}
         className="bg-gray-200 dark:bg-gray-800 w-12 h-12 rounded-lg"
       />
-      <View>
-        <Text className="font-semibold">{podcast.podcastName}</Text>
-        <Text className="text-sm text-gray-500">{podcast.artist}</Text>
-        <Text className="text-sm text-blue-500">
+      <View className="flex-1">
+        <Text className="font-semibold" numberOfLines={1}>
+          {podcast.podcastName}
+        </Text>
+        <Text className="text-xs text-gray-500" numberOfLines={1}>
+          {podcast.artist}
+        </Text>
+        <Text className="text-xs text-blue-800">
           Episodes: {podcast.episodesCount}
         </Text>
       </View>

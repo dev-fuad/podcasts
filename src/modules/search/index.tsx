@@ -8,6 +8,7 @@
  */
 
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { useCSSVariable } from "uniwind";
 import PodcastItem from "@/components/podcast-item";
 import Input from "@/components/ui/input";
 import { useState } from "react";
@@ -19,6 +20,7 @@ import {
 } from "@/types/__generated__/graphql";
 
 const SearchScreen = () => {
+  const color = useCSSVariable("--color-indigo-900") as string;
   const [searchTerm, setSearchTerm] = useState("");
   const [search, { data, loading, error }] = useLazyQuery<
     SearchQueryQuery,
@@ -60,12 +62,19 @@ const SearchScreen = () => {
               )
         }
         ListHeaderComponent={
-          loading ? () => <ActivityIndicator className="mt-4" /> : undefined
+          loading
+            ? () => <ActivityIndicator color={color} className="mt-4" />
+            : undefined
         }
         ItemSeparatorComponent={() => (
           <View className="h-px mx-2 bg-gray-200 dark:bg-gray-800" />
         )}
       />
+      {error?.message && (
+        <View className="p-2 bg-red-500">
+          <Text className="text-sm text-white">{error?.message}</Text>
+        </View>
+      )}
     </View>
   );
 };
