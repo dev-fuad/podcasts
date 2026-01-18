@@ -1,4 +1,7 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
+import dotenv from "dotenv";
+
+dotenv.config({ path: [".env.local", ".env"] });
 
 const config: CodegenConfig = {
   overwrite: true,
@@ -25,6 +28,8 @@ const config: CodegenConfig = {
         // Apollo Client doesn't add the `__typename` field to root types so
         // don't generate a type for the `__typename` for root operation types.
         skipTypeNameForRoot: true,
+        // Use Item[] instead of Array<Item>
+        arrayType: "squareBrackets",
       },
     },
   },

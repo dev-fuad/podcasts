@@ -53,6 +53,13 @@ export type QuerySearchArgs = {
   term: Scalars['String']['input'];
 };
 
+export type FeedQueryQueryVariables = Exact<{
+  feedUrl: Scalars['String']['input'];
+}>;
+
+
+export type FeedQueryQuery = { feed: Array<{ __typename: 'FeedItem', description: string, duration: string, image: string | null, linkUrl: string, pubDate: string, subtitle: string, summary: string, text: string, title: string }> };
+
 export type SearchQueryQueryVariables = Exact<{
   query: Scalars['String']['input'];
 }>;
