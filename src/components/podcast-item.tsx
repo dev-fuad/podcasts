@@ -7,6 +7,7 @@
  * @format
  */
 
+import { Link } from "expo-router";
 import { View, Text, Image } from "react-native";
 import { Podcast } from "@/types/__generated__/graphql";
 
@@ -28,9 +29,16 @@ const PodcastItem = ({ podcast }: PodcastItemProps) => {
         <Text className="text-xs text-gray-500" numberOfLines={1}>
           {podcast.artist}
         </Text>
-        <Text className="text-xs text-blue-800">
-          Episodes: {podcast.episodesCount}
-        </Text>
+        <Link
+          href={{
+            pathname: "/search/details/[id]",
+            params: { id: podcast.feedUrl },
+          }}
+        >
+          <Text className="text-xs text-blue-800">
+            Episodes: {podcast.episodesCount}
+          </Text>
+        </Link>
       </View>
     </View>
   );

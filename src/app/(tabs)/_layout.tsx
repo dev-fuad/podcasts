@@ -34,6 +34,8 @@ export default function Layout() {
         name="search"
         options={{
           title: "Search",
+          tabBarLabel: "Search",
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="search-outline" size={size} color={color} />
           ),
